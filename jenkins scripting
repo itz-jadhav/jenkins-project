@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Define the web server directory (adjust path if different)
+WEB_SERVER_DIR="/var/www/html"
+
+# Make sure the directory exists and is writable
+if [ -d "$WEB_SERVER_DIR" ]; then
+    echo "Web server directory found: $WEB_SERVER_DIR"
+else
+    echo "Error: Web server directory $WEB_SERVER_DIR does not exist."
+    exit 1
+fi
+
+# Clear existing files in the web server directory (optional)
+echo "Cleaning up existing files in $WEB_SERVER_DIR..."
+sudo rm -rf ${WEB_SERVER_DIR:?}/*
+
+# Copy the HTML files from the Jenkins workspace to the web server directory
+echo "Deploying HTML files to $WEB_SERVER_DIR..."
+sudo cp -r * "$WEB_SERVER_DIR/"
+
+# Set the correct permissions (optional)
+echo "Setting permissions..."
+sudo chmod -R 755 "$WEB_SERVER_DIR"
+
+echo "Deployment complete!"
