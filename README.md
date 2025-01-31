@@ -92,6 +92,11 @@ bash
 
 5  Add pipeline script in Jenkinsfile
 
+    sudo visudo
+
+    jenkins ALL=(ALL) NOPASSWD: ALL
+
+
 # Repository Structure #
 
     ├── index.html
